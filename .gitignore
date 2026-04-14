@@ -1,0 +1,13 @@
+.env
+# Ignorar o arquivo de senhas reais
+config.php
+
+# Ignorar pastas de dependências (se usar Composer)
+vendor/
+
+# Ignorar arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar configurações do VS Code
+.vscode/
