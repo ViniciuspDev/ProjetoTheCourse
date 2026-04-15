@@ -1,3 +1,6 @@
+<body>
+    
+
 <?php
 // Captura o status da URL (ex: ?p=contato&status=sucesso)
 $status = isset($_GET['status']) ? $_GET['status'] : '';
@@ -35,17 +38,26 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         <form action="enviar.php" method="POST" style="background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
             <div style="margin-bottom: 15px;">
                 <h3>Entre em contato via e-mail.</h3><br>
+                <!-- Campo de nome -->
                 <label style="display: block; margin-bottom: 5px; font-weight: bold;">Nome Completo</label>
                 <input type="text" name="nome" placeholder="Ex: João Silva" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
             </div>
             <div style="margin-bottom: 15px;">
+                <!-- Campo de e-mail -->
                 <label style="display: block; margin-bottom: 5px; font-weight: bold;">E-mail</label>
                 <input type="email" name="email" placeholder="seu@email.com" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required>
             </div>
             <div style="margin-bottom: 15px;">
+                <!-- Campo de mensagem -->
                 <label style="display: block; margin-bottom: 5px; font-weight: bold;">Mensagem</label>
                 <textarea name="mensagem" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" required></textarea>
-            </div>
+            </div>     
+                        <label style="display:block; margin-top:10px;">
+                            <!-- Checkbox para aceitar a política de privacidade -->
+                            <input type="checkbox" id="privacyCheck" name="privacyCheck" required>
+                            Eu concordo com a 
+                            <a href="index.php?p=politica-privacidade" target="_blank">Política de Privacidade</a>
+                        </label>
             <button type="submit" class="btn-cta" style="width: 100%; border: none; cursor: pointer;">Enviar</button>
                     <div style="display: none;">
                         <!-- Validção anti-spam (honeypot) -->
@@ -76,3 +88,5 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         </div>
     </div>
 </section>
+
+</body>

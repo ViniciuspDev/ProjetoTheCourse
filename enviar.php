@@ -11,6 +11,10 @@ use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+if (!isset($_POST['privacyCheck'])) {
+    die("Você precisa aceitar a política de privacidade.");
+}
+
  // Recebe e limpa os dados
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
