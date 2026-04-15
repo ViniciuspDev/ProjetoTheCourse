@@ -21,16 +21,17 @@ if (!isset($_POST['privacyCheck'])) {
     $mensagem = trim($_POST['mensagem']);
 
 
+    // Verificação de Honeypot
+   
      if (!empty($_POST['validacao'])) {
     header("Location: index.php?p=contato&status=sucesso");
     exit();
     }
 
     // Validação do reCAPTCHA
-       // 1. Recupere o token (você já viu que ele existe!)
     $token = $_POST['g-recaptcha-response'] ?? '';
 
-    // 2. Sua CHAVE SECRETA (Confirme se é a 'Secret Key' no painel do Google)
+    // 2. Sua CHAVE SECRETA
     $secret = RECAPTCHA_SECRET; // Use a constante definida no config.php
 
     // 3. Preparando a chamada via POST de forma simplificada
@@ -54,9 +55,7 @@ if (!isset($_POST['privacyCheck'])) {
 
     // 4. Teste definitivo
     if ($respostaFinal && $respostaFinal->success) {
-        // SUCESSO! Prossiga com o envio do e-mail
     } else {
-        // Se caiu aqui, dê um var_dump($respostaFinal) para ver o erro exato do Google
         header("Location: index.php?p=contato&status=erro_captcha");
         exit();
     }
@@ -72,8 +71,6 @@ if (!isset($_POST['privacyCheck'])) {
         header("Location: index.php?p=contato&status=email_invalido");
         exit();
     }
-    // Verificação de Honeypot
-   
     
 
 
@@ -95,14 +92,10 @@ if (!isset($_POST['privacyCheck'])) {
         $mail->addAddress(SMTP_USER);
         $mail->addReplyTo($email, $nome);
 
-        // 4. Conteúdo
-     // ... após as configurações de SMTP ...
-
 $mail->isHTML(true);
 $mail->CharSet = 'UTF-8';
 $mail->Subject = 'Novo Lead: Interesse em Aulas - ' . $nome;
-// No e-mail que vai para VOCÊ:
-$mail->addReplyTo($email, $nome); // Se você clicar em "Responder", vai para o aluno
+$mail->addReplyTo($email, $nome);
 
 // Montando o corpo do e-mail com HTML e CSS Inline
 $mail->Body = "
