@@ -25,8 +25,9 @@
             <ul>
                 <li><a href="index.php?p=home">Home</a></li>
                 <li><a href="index.php?p=metodologia">Metodologia</a></li>
-                <li><a href="index.php?p=contato">Contato</a></li>
                 <li><a href="index.php?p=preparatorios">Preparatorios</a></li>
+                <li><a href="index.php?p=contato">Contato</a></li>
+                
             </ul>
             
         </nav>
