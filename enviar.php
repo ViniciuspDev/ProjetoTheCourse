@@ -87,8 +87,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->CharSet    = 'UTF-8';
 
         // 3. Destinatários
-        $mail->setFrom('seu-email@gmail.com', 'The Course - Site');
-        $mail->addAddress('thecourseangra@gmail.com'); // Onde você quer receber os leads
+        $mail->setFrom(SMTP_USER, 'The Course - Site');
+        $mail->addAddress(SMTP_USER);
+        $mail->addReplyTo($email, $nome);
 
         // 4. Conteúdo
      // ... após as configurações de SMTP ...
@@ -96,6 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $mail->isHTML(true);
 $mail->CharSet = 'UTF-8';
 $mail->Subject = 'Novo Lead: Interesse em Aulas - ' . $nome;
+// No e-mail que vai para VOCÊ:
+$mail->addReplyTo($email, $nome); // Se você clicar em "Responder", vai para o aluno
 
 // Montando o corpo do e-mail com HTML e CSS Inline
 $mail->Body = "
@@ -130,14 +133,48 @@ $mail->Body = "
 // Texto alternativo para leitores de e-mail antigos (sem HTML)
 $mail->AltBody = "Novo contato de: $nome\nE-mail: $email\n\nMensagem:\n$mensagem";
 
-$mail->send();
+if($mail->send()) {
         // 5. Redirecionamento com sucesso
-        header("Location: index.php?p=contato&status=sucesso");
+    $mail->clearAddresses(); // LIMPA O SEU E-MAIL DOS DESTINATÁRIOS
+    $mail->addAddress($email, $nome); // ADICIONA O E-MAIL DO ALUNO
+    
+    $mail->Subject = 'Recebemos sua mensagem! - The Course';
+    $mail->Body = "
+            <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
+                <div style='background-color: #002b5c; color: #ffffff; padding: 20px; text-align: center;'>
+                    <h1 style='margin: 0; font-size: 24px;'>The Course</h1>
+                </div>
+                <div style='padding: 30px; color: #333333; line-height: 1.6;'>
+                    <p style='font-size: 18px;'>Olá, <strong>{$nome}</strong>!</p>
+                    <p>Obrigado por entrar em contato com o <strong>The Course</strong>.</p>
+                    <p>Nossa equipe já recebeu sua mensagem e estamos analisando sua solicitação. Faremos o possível para retornar em até <strong>24 horas úteis</strong>.</p>
+                    <div style='background-color: #f9f9f9; border-left: 4px solid #002b5c; padding: 15px; margin: 20px 0;'>
+                        <p style='margin: 0; font-style: italic; color: #666;'>
+                            \"A educação é a arma mais poderosa que você pode usar para mudar o mundo.\"
+                        </p>
+                    </div>
+                    <p style='margin-top: 30px;'>Atenciosamente,<br>
+                    <strong>Equipe de Suporte | The Course</strong></p>
+                </div>
+                <div style='background-color: #f4f4f4; color: #888888; padding: 15px; text-align: center; font-size: 12px;'>
+                    <p style='margin: 0;'>© " . date('Y') . " The Course. Este é um e-mail automático.</p>
+                </div>
+            </div>";
+    
+    $mail->AltBody = "Olá, $nome!\n\nObrigado por entrar em contato com o The Course. Nossa equipe já recebeu sua mensagem e estamos analisando sua solicitação. Faremos o possível para retornar em até 24 horas úteis.\n\nAtenciosamente,\nEquipe de Suporte | The Course";
+    // Tenta enviar a resposta para o aluno
+    $mail->send(); 
+
+    // --- FIM DO BLOCO DE RESPOSTA AUTOMÁTICA ---
+
+    // Redireciona para sucesso após os dois envios
+   header("Location: index.php?p=contato&status=sucesso");
         exit();
+    }
 
     } catch (Exception $e) {
-        // Em caso de erro, você pode logar: $mail->ErrorInfo
-        header("Location: index.php?p=contato&status=erro");
-        exit();
+    // Em caso de erro técnico no PHPMailer
+    header("Location: index.php?p=contato&status=erro");
+    exit();
     }
 }
