@@ -1,4 +1,5 @@
 <?php
+
 // 1. Importação dos arquivos
 require 'lib/Exception.php';
 require 'lib/PHPMailer.php';
@@ -22,40 +23,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validação do reCAPTCHA
-   // 1. Defina as chaves e a resposta
-        $recaptcha_secret = "RECAPTCHA_SECRET"; // Sua chave secreta do reCAPTCHA
-        $recaptcha_response = $_POST['g-recaptcha-response'];
+       // 1. Recupere o token (você já viu que ele existe!)
+    $token = $_POST['g-recaptcha-response'] ?? '';
 
-        // 2. Prepare os dados para o POST (é mais seguro que mandar pela URL)
-        $data = [
-            'secret'   => $recaptcha_secret,
-            'response' => $recaptcha_response,
-            'remoteip' => $_SERVER['REMOTE_ADDR']
-        ];
+    // 2. Sua CHAVE SECRETA (Confirme se é a 'Secret Key' no painel do Google)
+    $secret = RECAPTCHA_SECRET; // Use a constante definida no config.php
 
-        // 3. Configure a requisição POST
-        $options = [
-            'http' => [
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query($data)
-            ]
-        ];
+    // 3. Preparando a chamada via POST de forma simplificada
+    $dados = [
+        'secret'   => $secret,
+        'response' => $token,
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+    ];
 
-        // 4. Faz apenas UMA chamada ao servidor do Google
-        $context  = stream_context_create($options);
-        $verifyUrl = "https://www.google.com/recaptcha/api/siteverify";
-        $verifyResponse = file_get_contents($verifyUrl, false, $context);
+    $opcoes = [
+        'http' => [
+            'method'  => 'POST',
+            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            'content' => http_build_query($dados)
+        ]
+    ];
 
-        // 5. Decodifica a resposta
-        $captcha_success = json_decode($verifyResponse);
+    $contexto = stream_context_create($opcoes);
+    $resultado = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $contexto);
+    $respostaFinal = json_decode($resultado);
 
-        // 6. Validação final
-        if (!$captcha_success || $captcha_success->success == false) {
-            // Se falhar ou se o usuário esqueceu de marcar a caixa
-            header("Location: index.php?p=contato&status=erro_captcha");
-            exit();
-        }
+    // 4. Teste definitivo
+    if ($respostaFinal && $respostaFinal->success) {
+        // SUCESSO! Prossiga com o envio do e-mail
+    } else {
+        // Se caiu aqui, dê um var_dump($respostaFinal) para ver o erro exato do Google
+        header("Location: index.php?p=contato&status=erro_captcha");
+        exit();
+    }
     // Verifica se os campos estão realmente preenchidos
     if (empty($nome) || empty($email) || empty($mensagem)) {
         // Se algum estiver vazio, redireciona de volta com erro
@@ -80,15 +80,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com'; 
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'SMTP_USER'; // Seu e-mail
-        $mail->Password   = 'SMTP_PASS'; // Sua senha ou App Password
+        $mail->Username   = SMTP_USER; // Seu e-mail
+        $mail->Password   = SMTP_PASS; // Sua senha ou App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         $mail->CharSet    = 'UTF-8';
 
         // 3. Destinatários
         $mail->setFrom('seu-email@gmail.com', 'The Course - Site');
-        $mail->addAddress('viniciuspinheirotecnologia@gmail.com'); // Onde você quer receber os leads
+        $mail->addAddress('thecourseangra@gmail.com'); // Onde você quer receber os leads
 
         // 4. Conteúdo
      // ... após as configurações de SMTP ...

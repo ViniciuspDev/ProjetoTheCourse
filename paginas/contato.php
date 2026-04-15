@@ -7,9 +7,6 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
         <h1 style="color: var(--navy);">Prepare-se para o Próximo Nível</h1>
         <p>Preencha os dados abaixo e nossa equipe entrará em contato em até 24h.</p>
     </div>
-    <?php if ($status == 'erro_vazio'): ?>
-    <div class="alert alert-warning">Por favor, preencha todos os campos antes de enviar.</div>
-    <?php endif; ?>
 
     <?php
     // Captura o status da URL
