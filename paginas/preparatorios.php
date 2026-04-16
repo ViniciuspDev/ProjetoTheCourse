@@ -1,4 +1,5 @@
-<section style="background-color: var(--navy); color: white; padding: 60px 10%; text-align: center;">
+<section class="hero" style="height: auto; padding: 50px 0;">
+<section style="background-color: none; color: white; padding: 60px 10%; text-align: center;">
     <h1>Preparatório para Concursos</h1>
     <p>Preparação especializada para concursos públicos, com foco em estratégias de resolução de questões e revisão de conteúdo.</p>
 </section>
@@ -20,4 +21,5 @@
         <h3>Redação</h3>
         <p>Prática constante de redação em situações reais, desenvolvendo habilidades de comunicação escrita e argumentação.</p>
     </div>
+</section>
 </section>
