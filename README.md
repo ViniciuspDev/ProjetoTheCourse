@@ -59,7 +59,7 @@ ProjetoTheCourse/
 │   ├── Exception.php
 │   ├── PHPMailer.php
 │   ├── SMTP.php
-|
+│
 ├── paginas/
 │   ├── contato.php
 │   ├── home.php
