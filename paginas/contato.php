@@ -2,7 +2,7 @@
 // Captura o status da URL (ex: ?p=contato&status=sucesso)
 $status = isset($_GET['status']) ? $_GET['status'] : '';
 ?>
-<section class="hero" style="height: auto; padding: 50px 0;">
+<section class="hero-contato" style="min-height: 100vh; height: auto; padding: 50px 0;">
 <section style="padding: 60px 10%;">
     <div style="text-align: center; margin-bottom: 40px; background-color: none; padding: 30px; border-radius: 10px;">
         <h1 style="color: white;">Fale Conosco</h1>
@@ -15,7 +15,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
 
     if ($status == 'sucesso'): ?>
         <div style="background-color: #d4edda; color: #155724; padding: 15px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #c3e6cb;">
-            <strong>Sucesso!</strong> Sua mensagem foi enviada. Em breve entrarei em contato.
+            <strong>Sucesso!</strong> Sua mensagem foi enviada. Em breve entraremos em contato.
         </div>
 
     <?php elseif ($status == 'erro_captcha'): ?>

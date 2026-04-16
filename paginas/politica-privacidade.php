@@ -119,11 +119,11 @@
 }
 </style>
 <div class="container-politica">
-    <header class="cabecalho-politica">
+    <div class="cabecalho-politica">
         <div class="detalhe-bandeira"></div>
         <h1>Política de Privacidade</h1>
         <p>Última atualização: 15 de abril de 2026</p>
-    </header>
+    </div>
 
     <section class="secao-politica">
         <h2><span>🛡️</span> 1. Compromisso com a Privacidade</h2>

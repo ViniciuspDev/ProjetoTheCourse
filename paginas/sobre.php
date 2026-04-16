@@ -1,15 +1,11 @@
-<section class="hero" style="height: auto; padding: 50px 0;">
+<section class="hero-sobre" style="min-height: 100vh; height: auto; padding: 50px 0;">
     <h1>Quem Somos</h1>
     <p>Historia do curso aqui.....</p>
 
 <div style="padding: 10px 10%; background: none; height: auto; margin-top: 40px; border-radius: 10px;">
-    <p style="text-align: center; margin-bottom: 40px;">.</p>
+    <h2 style="text-align: center; margin-bottom: 40px;">Conheça nossos Professores</h2>
 </div>
 
-
-        <div>
-            <h2 style="text-align: center; margin-bottom: 40px;">Conheça nossos Professores</h2>
-        </div>
     <section class="features">
     <div class="feature-card">
         <h3>John Doe</h3>

@@ -1,4 +1,4 @@
-<section class="hero" style="height: auto; padding: 50px 0;">
+<section class="hero-metodologia" style="min-height: 100vh; height: auto; padding: 50px 0;">
 <section  style="background-color: none; color: white; padding: 60px 10%; text-align: center;">
 <div style="text-align: center; margin-bottom: 40px; background-color: none; padding: 30px; border-radius: 10px;" >
 

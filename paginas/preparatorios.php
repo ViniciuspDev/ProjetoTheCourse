@@ -1,4 +1,4 @@
-<section class="hero" style="height: auto; padding: 50px 0;">
+<section class="hero-preparatorios" style="min-height: 100vh; height: auto; padding: 50px 0;">
 <section style="background-color: none; color: white; padding: 60px 10%; text-align: center;">
     <h1>Preparatório para Concursos</h1>
     <p>Preparação especializada para concursos públicos, com foco em estratégias de resolução de questões e revisão de conteúdo.</p>
