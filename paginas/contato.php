@@ -33,7 +33,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
         
-        <form action="enviar.php" method="POST" style="background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+        <form  action="enviar.php" method="POST" style="margin-bottom: 200px; margin-top: 0px; background: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
             <div style="margin-bottom: 15px;">
                 <h3 style="color: black;">Entre em contato via e-mail.</h3><br>
                 <!-- Campo de nome -->
@@ -56,7 +56,7 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
                             Eu concordo com a 
                             <a href="index.php?p=politica-privacidade" target="_blank">Política de Privacidade</a>
                         </label>
-            <button type="submit" class="btn-cta" style="width: 100%; border: none; cursor: pointer;">Enviar</button>
+            <button type="submit" class="btn-cta" style="margin-top: 20px; width: 100%; border: none; cursor: pointer;">Enviar</button>
                     <div style="display: none;">
                         <!-- Validção anti-spam (honeypot) -->
                         <label>Se você é humano, deixe este campo vazio:</label>
@@ -67,13 +67,13 @@ $status = isset($_GET['status']) ? $_GET['status'] : '';
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
                 <form action="enviar.php" method="POST">
-                <div class="g-recaptcha" data-sitekey="6LeQxrcsAAAAAKU7t9BvqiSO0TE9tgc61EmnrDSO"></div>
+                <div style="margin-top: 20px; display: flex; justify-content: center;" class="g-recaptcha" data-sitekey="6LeQxrcsAAAAAKU7t9BvqiSO0TE9tgc61EmnrDSO"></div>
                  </form>
         </form>
                
 
         
-        <div style="color: black; text-align: center; margin-bottom: 40px; background-color: var(--white); padding: 30px; border-radius: 10px;">
+        <div style="color: black; text-align: center; margin-top: 0px; margin-bottom: 200px; background-color: var(--white); padding: 30px; border-radius: 10px;">
             <h3 style="color: var(--red); margin-bottom: 15px;">Onde estamos</h3>
             <p><strong>Endereço:</strong>  Rua Valentim, 88 - Nova Angra</p>
             <p><strong>Horário de Atendimento:</strong> Segunda a Sexta, das 9h às 18h</p>
