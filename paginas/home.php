@@ -4,11 +4,10 @@
 
     <div style="text-align: center; margin-top: 40px;">
 
+        <p style="margin-top: 20px; color: white;">Faça já sua matrícula, nossas vagas são limitadas!</p><br>
 
-    
         <a href="index.php?p=contato" class="btn-cta">Quero Saber Mais</a><br>
         <br>
-        <p style="margin-top: 20px; color: white;">Tem interesse em aprender inglês com professores capacitados e metodologia eficaz?</p>
         <br>
     </div>
     
